@@ -25,7 +25,7 @@ def loop():
 			car_dir.dir_home(pwm0)
 			time.sleep(0.5)
 			homedis = ultrasonic.checkdist()
-			print 'homedis = %0.2f m' %homedis
+			print ('homedis = %0.2f m' %homedis)
 			motor.motorStop()
 			if homedis > dis:
 				motor.motor(status, forward, f_spd)
@@ -34,11 +34,11 @@ def loop():
 				car_dir.dis_left(pwm1)
 				time.sleep(0.5)
 				leftdis = ultrasonic.checkdist()
-				print 'leftdis = %0.2f m' %leftdis
+				print ('leftdis = %0.2f m' %leftdis)
 				car_dir.dis_right(pwm1)
 				time.sleep(0.5)
 				rightdis = ultrasonic.checkdist()
-				print 'rightdis = %0.2f m' %rightdis
+				print ('rightdis = %0.2f m' %rightdis)
 				if leftdis < dis and  rightdis < dis:
 					if leftdis >= rightdis:
 						motor.motor(status, backward, b_spd)

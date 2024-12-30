@@ -61,7 +61,7 @@ def destroy():
 	GPIO.cleanup()
 
 if __name__ == "__main__":
-	print 'Press Ctrl+C to end the program'
+	print('Press Ctrl+C to end the program')
 	try:
 		setup(R, G, B)
 		loop()
