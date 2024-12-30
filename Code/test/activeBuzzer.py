@@ -26,7 +26,7 @@ def destroy():
 	GPIO.cleanup()                     # Release resource
 
 if __name__ == '__main__':     # Program start from here
-	print 'Press Ctrl+C to end the program...'
+	print('Press Ctrl+C to end the program...')
 	setup()
 	try:
 		loop()

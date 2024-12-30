@@ -1,4 +1,4 @@
-#!/usr/bin/evn python
+#!/usr/bin/env python
 from socket import *
 import sys
 import time
@@ -17,21 +17,21 @@ def cnt():
 			tcpClicSock.connect(ADDR)
 			break
 		except Exception:
-			print("Cannot connecting to server,try it latter!")
+			print("Cannot connecting to server,try it later!")
 			time.sleep(1)
 			continue
 
 def loop():
-    while True:
-        cmd = raw_input('input cmd: ')
-	tcpClicSock.send(cmd)
-	if cmd == 'exit':
-	    sys.exit('bye')
+	while True:
+		cmd = input('input cmd: ')
+		tcpClicSock.send(cmd.encode())
+		if cmd == 'exit':
+			sys.exit('bye')
 
 if __name__ == '__main__':
-    try:
-	cnt()
-	loop()
-    except KeyboardInterrupt:
-	tcpClicSock.close()
+	try:
+		cnt()
+		loop()
+	except KeyboardInterrupt:
+		tcpClicSock.close()
 	

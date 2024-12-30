@@ -27,7 +27,7 @@ while True:
 
 	pwm.set_pwm(dir_ch, 0, dir_mid+100)
 	time.sleep(1)
-
-   	pwm.set_pwm(dir_ch, 0, dir_mid-70)
+    
+	pwm.set_pwm(dir_ch, 0, dir_mid-70)
 	time.sleep(1)
 

@@ -61,9 +61,9 @@ def autoMode():
 
 def run():
 	while True:
-		print 'waiting for connection...'	
+		print('waiting for connection...')	
 		tcpCliSock, addr = tcpSerSock.accept()
-		print '...connected from :', addr
+		print('...connected from :', addr)
 		while True: 
 			data = ''
 			data = tcpCliSock.recv(BUFSIZ)
@@ -71,21 +71,21 @@ def run():
 				continue
 			if data == ctrl_cmd[0]:
 				global spd
-				print 'motor moving forward'
+				print('motor moving forward')
 				motor.motor(status, forward, spd)
 				direction = forward
-				print 'spd = %d' %spd
+				print('spd = %d' %spd)
 				ledon = threading.Thread(target=ledOn)
 				ledon.start()
 			elif data == ctrl_cmd[1]:
-				print 'recv backward cmd'
+				print('recv backward cmd')
 				motor.motor(status, backward, spd)
 				direction = backward
-				print 'spd = %d' %spd
+				print('spd = %d' %spd)
 				breathingon = threading.Thread(target=breathingOn)
 				breathingon.start()
 			elif data == ctrl_cmd[2]:
-				print 'recv left cmd'
+				print('recv left cmd')
 				rgbLed.setup(leftRgb)
 				car_dir.dir_left(pwm0)
 				car_dir.dis_left(pwm1)
@@ -94,7 +94,7 @@ def run():
 				rgbLed.stop(rightRgb)
 				continue
 			elif data == ctrl_cmd[3]:
-				print 'recv right cmd'
+				print('recv right cmd')
 				rgbLed.setup(rightRgb)
 				car_dir.dir_right(pwm0)
 				car_dir.dis_right(pwm1)
@@ -103,7 +103,7 @@ def run():
 				rgbLed.stop(leftRgb)
 				continue
 			elif data == ctrl_cmd[4]:
-				print 'recv home cmd'
+				print('recv home cmd')
 				car_dir.dir_home(pwm0)
 				car_dir.dis_home(pwm1)
 				rgbLed.stop(rightRgb)
@@ -114,15 +114,15 @@ def run():
 				rightrgb.start()
 				continue
 			elif data == ctrl_cmd[5]:
-				print 'recv distance cmd'
-				print 'Distance: %0.2fm' %ultrasonic.checkdist()
+				print('recv distance cmd')
+				print('Distance: %0.2fm' %ultrasonic.checkdist())
 				continue
 			elif data == ctrl_cmd[6]:
-				print 'recv whistle cmd'
+				print('recv whistle cmd')
 				activeBuzzer.loop()
 				continue
 			elif data == ctrl_cmd[7]:
-				print 'recv stop cmd'
+				print('recv stop cmd')
 				setup()
 				motor.motorStop()
 				breathingLed.stop(b_LedPin)
@@ -133,24 +133,24 @@ def run():
 				setup()
 				continue
 			elif data == ctrl_cmd[8]:
-				print 'recv exit cmd'
+				print('recv exit cmd')
 				GPIO.cleanup()
 				tcpSerSock.close()
 				os.system('sudo init 0')
 			elif data == ctrl_cmd[9]:
-				print 'recev auto cmd'
+				print('recev auto cmd')
 				auto = threading.Thread(target=autoMode)
 				auto.start()
 				continue
 			elif data[0:5] == 'speed':
-				print 'recv speed cmd'
+				print('recv speed cmd')
 				numLen = len(data) - len('speed')
 				if numLen == 1 or numLen == 2 or numLen == 3:
 					tmp = data[-numLen:]
-				print 'tmp(str) = %s' %tmp
+				print('tmp(str) = %s' %tmp)
 				spd = int(tmp)
-				print 'spd(int) = %d' %spd
-				print 'direction = %d' %direction
+				print('spd(int) = %d' %spd)
+				print('direction = %d' %direction)
 				if spd < minspd:
 					spd = minspd
 				elif spd > maxspd:
@@ -158,7 +158,7 @@ def run():
 				motor.motor(status, direction, spd)
 				continue
 			else:
-				print 'Command Error! Cannot recongnize command: ' +data
+				print('Command Error! Cannot recongnize command: ' +data)
 
 def destroy():		
 	GPIO.cleanup()

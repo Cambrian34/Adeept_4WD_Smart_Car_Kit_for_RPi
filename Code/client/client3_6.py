@@ -22,16 +22,16 @@ def cnt():
 			continue
 
 def loop():
-    while True:
-        cmd = input('input cmd: ')
+	while True:
+		cmd = input('input cmd: ')
 		tcpClicSock.send(cmd.encode())
 		if cmd == 'exit':
-	    	sys.exit('bye')
+			sys.exit('bye')
 
 if __name__ == '__main__':
-    try:
-	cnt()
-	loop()
-    except KeyboardInterrupt:
-	tcpClicSock.close()
+	try:
+		cnt()
+		loop()
+	except KeyboardInterrupt:
+		tcpClicSock.close()
 	
